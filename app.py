@@ -40,12 +40,20 @@ st.markdown(
     , unsafe_allow_html=True
 )
 #------------------- Load Model -------------------#
+# @st.cache_resource
+# def load_classification_model():
+#     return load_model(
+#         'C:\\Users\\Lenovo\\Desktop\\project\\fruit_vegi_classifier\\Fruits_vegetables_classifier.keras',
+#          compile=False
+#     )
+
+# model = load_classification_model()
+
 @st.cache_resource
 def load_classification_model():
-    return load_model(
-        'C:\\Users\\Lenovo\\Desktop\\project\\fruit_vegi_classifier\\Fruits_vegetables_classifier.keras',
-         compile=False
-    )
+    # Use relative path so it works both locally and on Streamlit Cloud
+    model_path = os.path.join(os.path.dirname(__file__), "Fruits_vegetables_classifier.keras")
+    return load_model(model_path, compile=False)
 
 model = load_classification_model()
 
