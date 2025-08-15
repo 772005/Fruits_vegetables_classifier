@@ -5,6 +5,7 @@ from tensorflow.keras.models import  load_model
 import streamlit as st
 import numpy as np 
 from PIL import Image
+import os
 
 
 #-----------App configuration--------------
@@ -51,7 +52,6 @@ st.markdown(
 
 @st.cache_resource
 def load_classification_model():
-    # Use relative path so it works both locally and on Streamlit Cloud
     model_path = os.path.join(os.path.dirname(__file__), "Fruits_vegetables_classifier.keras")
     return load_model(model_path, compile=False)
 
